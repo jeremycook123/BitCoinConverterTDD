@@ -97,7 +97,7 @@ namespace BitcoinConverter.Tests
 
             var converter = new BitcoinConverterService(httpClient);
 
-                        //act
+            //act
             var amount = await converter.ConvertToUSD(1);
 
             //assert
