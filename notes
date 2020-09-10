@@ -1,0 +1,23 @@
+https://www.coindesk.com/coindesk-api
+https://api.coindesk.com/v1/bpi/currentprice/NZD.json
+
+=========================
+
+dotnet new sln -o BitcoinConverter && cd ./BitcoinConverter/
+
+dotnet new xunit -o BitcoinConverter.Tests
+dotnet sln add ./BitcoinConverter.Tests/BitcoinConverter.Tests.csproj
+
+dotnet new classlib -o BitcoinConverter.Code
+dotnet sln add ./BitcoinConverter.Code/
+
+dotnet add BitcoinConverter.Code.csproj package NewtonSoft.Json
+dotnet add BitcoinConverter.Code.csproj package System.Text.Json
+
+dotnet add BitcoinConverter.Tests.csproj package Moq
+
+=========================
+
+https://github.com/watchexec/watchexec
+brew install watchexec
+watchexec --exts cs dotnet test
