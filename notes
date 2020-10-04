@@ -21,3 +21,5 @@ dotnet add BitcoinConverter.Tests.csproj package Moq
 https://github.com/watchexec/watchexec
 brew install watchexec
 watchexec --exts cs dotnet test
+
+DOTNET_USE_POLLING_FILE_WATCHER=1 dotnet watch -p BitcoinConverter.sln test
