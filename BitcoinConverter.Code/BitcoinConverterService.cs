@@ -56,5 +56,10 @@ namespace BitcoinConverter.Code
 
             return result;
         }
+
+        public string Version()
+        {
+            return "v1.0.2";
+        }
     }
 }
