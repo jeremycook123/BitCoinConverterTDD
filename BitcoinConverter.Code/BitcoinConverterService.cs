@@ -8,6 +8,7 @@ namespace BitcoinConverter.Code
     public class BitcoinConverterService
     {
         private HttpClient client;
+        private const string version = "v1.0.3";
 
         public BitcoinConverterService()
         {
@@ -57,9 +58,9 @@ namespace BitcoinConverter.Code
             return result;
         }
 
-        public string Version()
+        public string GetVersion()
         {
-            return "v1.0.2";
+            return version;
         }
     }
 }
