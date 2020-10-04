@@ -5,14 +5,14 @@ https://api.coindesk.com/v1/bpi/currentprice/NZD.json
 
 dotnet new sln -o BitcoinConverter && cd ./BitcoinConverter/
 
-dotnet new xunit -o BitcoinConverter.Tests
-dotnet sln add ./BitcoinConverter.Tests/BitcoinConverter.Tests.csproj
-
-dotnet new classlib -o BitcoinConverter.Code
+dotnet new classlib -o BitcoinConverter.Code --framework netcoreapp3.1
 dotnet sln add ./BitcoinConverter.Code/
 
 dotnet add BitcoinConverter.Code.csproj package NewtonSoft.Json
 dotnet add BitcoinConverter.Code.csproj package System.Text.Json
+
+dotnet new xunit -o BitcoinConverter.Tests --framework netcoreapp3.1
+dotnet sln add ./BitcoinConverter.Tests/BitcoinConverter.Tests.csproj
 
 dotnet add BitcoinConverter.Tests.csproj package Moq
 
@@ -23,3 +23,13 @@ brew install watchexec
 watchexec --exts cs dotnet test
 
 DOTNET_USE_POLLING_FILE_WATCHER=1 dotnet watch -p BitcoinConverter.sln test
+
+=========================
+
+wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install -y apt-transport-https
+sudo apt-get update
+sudo apt-get install -y dotnet-sdk-3.1
+dotnet --version
