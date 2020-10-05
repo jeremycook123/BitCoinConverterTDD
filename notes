@@ -5,14 +5,22 @@ https://api.coindesk.com/v1/bpi/currentprice/NZD.json
 
 dotnet new sln -o BitcoinConverter && cd ./BitcoinConverter/
 
+dotnet new xunit -o BitcoinConverter.Tests --framework netcoreapp3.1
+dotnet sln add ./BitcoinConverter.Tests/BitcoinConverter.Tests.csproj
+
+------
+
 dotnet new classlib -o BitcoinConverter.Code --framework netcoreapp3.1
-dotnet sln add ./BitcoinConverter.Code/
+dotnet sln add ./BitcoinConverter.Code/BitcoinConverter.Code.csproj
+
+dotnet add BitcoinConverter.Tests/BitcoinConverter.Tests.csproj reference BitcoinConverter.Code/BitcoinConverter.Code.csproj
+
+------
 
 dotnet add BitcoinConverter.Code.csproj package NewtonSoft.Json
 dotnet add BitcoinConverter.Code.csproj package System.Text.Json
 
-dotnet new xunit -o BitcoinConverter.Tests --framework netcoreapp3.1
-dotnet sln add ./BitcoinConverter.Tests/BitcoinConverter.Tests.csproj
+
 
 dotnet add BitcoinConverter.Tests.csproj package Moq
 
@@ -33,3 +41,33 @@ sudo apt-get install -y apt-transport-https
 sudo apt-get update
 sudo apt-get install -y dotnet-sdk-3.1
 dotnet --version
+
+=========================
+
+dotnet build --configuration Release
+
+dotnet new console -o BitcoinConverter.Client --framework netcoreapp3.1
+
+=========================
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RuntimeIdentifiers>osx.10.14-x64;ubuntu.18.04-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NewtonSoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <Reference Include="BitcoinConverter.Code.dll">
+      <HintPath>libraries\BitcoinConverter.Code.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
+
+
+dotnet publish -r osx.10.14-x64
+dotnet publish -r ubuntu.18.04-x64
