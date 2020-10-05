@@ -1,4 +1,4 @@
-name: cloudacademy.bitcoinconverter.build
+name: bitcoinconverter.build
 
 on: push
 
