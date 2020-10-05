@@ -12,7 +12,7 @@ namespace BitcoinConverter.Code
 
         public BitcoinConverterService()
         {
-            //test comment
+            //test comment2
             this.client = new HttpClient();
         }
 

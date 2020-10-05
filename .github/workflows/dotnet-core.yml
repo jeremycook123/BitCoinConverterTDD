@@ -27,12 +27,6 @@ jobs:
         cd BitcoinConverter.Tests
         dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
 
-    - name: Check coverage report
-      run: |
-        pwd
-        ls -la
-        ls -la BitcoinConverter.Tests/TestResults
-
     - name: Publish coverage report to coveralls.io
       uses: coverallsapp/github-action@v1.1.2
       with:
