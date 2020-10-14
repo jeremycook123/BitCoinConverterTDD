@@ -71,6 +71,7 @@ dotnet new console -o BitcoinConverter.Client --framework netcoreapp3.1
 
 dotnet publish -r osx.10.14-x64
 dotnet publish -r ubuntu.18.04-x64
+dotnet publish --runtime linux-x64 --configuration Release /p:TargetFramework=netcoreapp3.0 /p:PublishSingleFile=true /p:PublishTrimmed=true
 
 =========================
 
